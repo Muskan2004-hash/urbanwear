@@ -6,7 +6,7 @@ pipeline {
         stage('Deploy To App Server') {
             steps {
 
-                sshagent(['app-server-key']) {
+                sshagent(['aws-server']) {
 
                     sh '''
                     ssh -o StrictHostKeyChecking=no root@44.220.82.25"
