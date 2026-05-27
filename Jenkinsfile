@@ -3,23 +3,26 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
+        stage('Deploy To App Server') {
             steps {
-                git 'git@github.com:Muskan2004-hash/urbanwear.git'
+
+                sshagent(['app-server-key']) {
+
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no root@44.222.148.139 "
+
+                    cd ~/urbanwear &&
+
+                    git pull origin main &&
+
+                    docker compose down &&
+
+                    docker compose up -d --build
+
+                    "
+                    '''
+                }
             }
         }
-
-        stage('Build Docker Containers') {
-            steps {
-                sh 'docker compose build'
-            }
-        }
-
-        stage('Deploy Application') {
-            steps {
-                sh 'docker compose up -d'
-            }
-        }
-
     }
 }
