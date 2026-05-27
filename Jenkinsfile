@@ -9,7 +9,7 @@ pipeline {
                 sshagent(['app-server-key']) {
 
                     sh '''
-                    ssh -o StrictHostKeyChecking=no root@44.222.148.139 "
+                    ssh -o StrictHostKeyChecking=no root@44.220.82.25"
 
                     cd ~/urbanwear &&
 
